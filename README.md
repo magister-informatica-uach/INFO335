@@ -1,6 +1,6 @@
 ## Universidad Austral de Chile
 
-# INFO147: Computación de Alto Rendimiento
+# INFO335: Computación de Alto Rendimiento
 
 ### Responsable: Cristóbal A. Navarro, cnavarro@inf.uach.cl
 
@@ -29,8 +29,8 @@ La asignatura de **Computación de Alto Rendimiento** introduce al estudiante co
 
 
 ### Complementaria
-1. [Brett Slakin, "Effective Python", *Addison-Wesley*, 2015](https://effectivepython.com/)
-1. [Lorena A. Barva, et al., "Teaching and Learning with Jupyter", 2019](https://jupyter4edu.github.io/jupyter-edu-book/)
+1. [Texas A&M Supercompouting Facility, OpenMP by Example]
+1. [Eijkhout V., Introduction to High Performance Scientific Computing, 2016]
 
 
 ***
