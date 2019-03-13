@@ -1,0 +1,2 @@
+descargar linpack:
+http://www.panticz.de/Linpack

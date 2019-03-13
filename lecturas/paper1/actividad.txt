@@ -1,0 +1,16 @@
+Presentacion de paper:
+
+En grupos de 2;
+Escojan un Journal del area de HPC, que tenga al menos alguna de las siguientes palabras claves en el titulo;
+
+- High Performance Computing
+- Parallel Computing
+- Distributed Computing
+- Parallel Architecture
+
+(1) Identifique el tipo de Journal (WoS, ISI, Scopus, otro?).
+(2) Busque el factor de impacto del journal en los ultimos 5 anios y el actual.
+(3) Busque un paper de los mas citados, y uno de los mas recientes.
+(4) Seleccione una publicacion reciente de su interes y prepare una presentacion resumida del trabajo y su contribucion.
+
+Fecha, 29 de Mayo.

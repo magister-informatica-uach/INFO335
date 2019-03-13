@@ -1,0 +1,22 @@
+lab01 - benchmark
+
+En este laboratorio usted ejecutara pruebas de rendimiento de CPU, I/O y GPU.
+
+Actividad:
+1) Mida rendimiento de CPU usando linpack. Haga un grafico de GFLOPS vs size
+para distinto numero de threads. Cada curva que tenga al menos 10 puntos. 
+Cada punto debe ser la media aritmetica de al menos 4 repeticiones.
+
+2) Mida rendimiento de I/O para mover 1GB, usando distintas combinaciones de bs y count (siempre formando un total de 1GB).
+Haga esto con y sin cache. Haga un grafico de GB/sec vs bs con ambas curvas dentro, 
+Cada punto debe ser la media aritmetica de al menos 4 repeticiones.
+
+3) Ejecute el test de GPU 'unigine heaven' y observe FPS maximo, minimo y promedio. Tambien busque la forma de obtener 
+los valores de temperatura de la CPU y GPU durante el benchmark en los momentos que usted registra cada punto. 
+Haga un grafico midiendo estos valores cada 30 segundos. Obtenga un minimo de 10 puntos.
+Cada punto debe ser la media aritmetica de al menos 4 repeticiones.
+
+4) Presentar conclusiones sobre los resultados obtenidos, desde el punto de
+vista de como varian las curvas en funcion de la variable independiente.
+
+5) Compartir los resultados y con participacion del profe hacer un ranking.

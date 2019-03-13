@@ -1,0 +1,13 @@
+Usted tiene un programa que multiplica matrices cuadradas de lado 'N'
+En esta actividad debera implementar el metodo de multiplicacion de matrices por
+bloque.
+
+1) Implemente la multiplicacion de matrices por bloque sin modificar la
+estructura de las matrices ni crear matrices nuevas.
+
+2) Encuentre cual es el valor de bloque optimo que entrega el mejor rendimiento
+para matrices grandes, como n=1024. Condirere B en potencias de 2.
+
+3) Paralelize el algoritmo para acelerar aun mas el rendimiento.
+
+4) Descubra una tercera forma de mejorar los accesos a memoria.
