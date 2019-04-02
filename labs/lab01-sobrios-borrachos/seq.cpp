@@ -18,6 +18,7 @@ int main(int argc, char** argv){
     int n = atoi(argv[1]);
     int grupo = atoi(argv[2]);
     int modo = atoi(argv[3]);
+    omp_set_num_threads(grupo);
 
 
     // (2) definir y crear matriz con nino aleatorio
