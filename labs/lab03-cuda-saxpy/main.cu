@@ -3,16 +3,16 @@
 #include <cuda.h>
 #include <omp.h>
 
+// (1) haga un programa saxpy en CUDA, de distintas formas
+//      a) funcion saxpy1 manual con particion segmentos continuos
+//      b) funcion saxpy2 manual con particion segmentos intercalados
+// (2) experimente comparando el resultado de cada metodo a distintos tamanos
+// (3) saque conclusiones sobre el rendimiento obtenido en funcion de n, p y el mapeo de hilos
+
 void imprime(float *a, int n);
 void cpu(float a, float *x, float *y, float *z, int n);
 __global__ void mikernel(float a, float *x, float *y, float *z, int n){
-	int tid = blockDim.x*blockIdx.x + threadIdx.x;
-	//printf("[GPU] tid %i n %i\n", tid, n);
-	// thread coarsening
-	if(tid < n){
-		// fine grained
-		z[tid] = a*x[tid] + y[tid];
-	}
+
 }
 
 int main(int argc,char **argv){
@@ -23,38 +23,6 @@ int main(int argc,char **argv){
 	cudaEvent_t start, stop;
 	cudaEventCreate(&start);
 	cudaEventCreate(&stop);
-	int n=atoi(argv[1]);
-	int m=atoi(argv[2]);
-	int BSIZE=atoi(argv[3]);
-	float *x,*y,*z;
-	float *dx, *dy, *dz;
-	float a = 1.0f;
-	printf("inicializando...."); fflush(stdout);
-	x=(float*)malloc(sizeof(float)*n);
-	y=(float*)malloc(sizeof(float)*n);
-	z=(float*)malloc(sizeof(float)*n);
-	// FASE 1  copiar   CPU --->  GPU
-	cudaMalloc(&dx, sizeof(float)*n);	
-	cudaMalloc(&dy, sizeof(float)*n);	
-	cudaMalloc(&dz, sizeof(float)*n);	
-	// destino, origen
-	for(int i=0;i<n;i++){ //inicializar vectores Z, X e Y
-		x[i]=1.0f;
-		y[i]=1.0f;
-		z[i]=0.0f;
-	}
-	cudaMemcpy(dx, x, sizeof(float)*n, cudaMemcpyHostToDevice);
-	cudaMemcpy(dy, y, sizeof(float)*n, cudaMemcpyHostToDevice);
-	cudaMemcpy(dz, z, sizeof(float)*n, cudaMemcpyHostToDevice);
-	printf("ok\n"); fflush(stdout);
-	/*
-	 x1 x2 x3 x4 ....... ..............xn
-	[t1 t2 t3 ..tk] [t1 t2 t3 ... tk] 
-	*/
-	dim3 block(BSIZE, 1, 1);
-	dim3 grid( (n + block.x - 1)/block.x, 1, 1);
-	printf("block(%i, %i, %i)   grid(%i, %i, %i)\n", block.x, block.y, block.z, 
-							 grid.x, grid.y, grid.z);
 	printf("calculando...."); fflush(stdout);
 	cudaEventRecord(start);
 	if(m){

@@ -3,8 +3,13 @@
 #include <omp.h>
 
 // (1) haga un programa saxpy y mida el tiempo del calculo
-// (2) introduzca paralelismo con OpenMP 
-// (3) grafique la aceleracion
+// (2) introduzca paralelismo con OpenMP, de distintas formas
+//      a) funcion saxpy1 con parallel for
+//      b) funcion saxpy2 con parallel for y chucksize = 1
+//      c) funcion saxpy3 manual con particion segmentos continuos
+//      d) funcion saxpy4 manual con particion segmentos intercalados
+// (3) experimente comparando el resultado de cada metodo a distintos tamanos
+// (4) saque conclusiones sobre el rendimiento obtenido, como escala con n y p
 int main(int argc, char **argv){
     if(argc != 3){
         fprintf(stderr, "error, ejecutar como: ./prog N threads\n");
