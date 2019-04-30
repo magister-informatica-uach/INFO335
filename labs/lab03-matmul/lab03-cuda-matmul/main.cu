@@ -3,17 +3,13 @@
 #include <cstdlib>
 #define BSIZE2D 32
 
+// EJERCICIOS
+// (1) Implemente el matmul de GPU basico
+// (2) Implemente el matmul de GPU usando memoria compartida
+// (3) Compare el rendimiento de GPU Matmul vs el de CPU que hizo previamente
+
 // GPU matmul basico
 __global__ void kernel_matmul(int n, float *a, float *b, float *c){
-    int tx = blockIdx.x * blockDim.x + threadIdx.x;
-    int ty = blockIdx.y * blockDim.y + threadIdx.y;
-    if(tx < n && ty < n){
-        float sum = 0.0f;
-        for(int k=0; k<n; ++k){
-           sum += a[ty*n + k]*b[k*n + tx];
-        }
-        c[ty*n + tx] = sum;
-    }
 }
 
 // GPU matmul shared memory 
