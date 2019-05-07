@@ -11,25 +11,6 @@ __global__ void kernel_initarray(float *a, long n){
 }
 
 __global__ void kernel_reduction(float *a, long n){
-    __shared__ float sdata[BSIZE];
-    unsigned int ltid = threadIdx.x;
-    unsigned int tid= blockIdx.x*blockDim.x+ threadIdx.x;
-    sdata[ltid] = 0.0f;
-    if(tid < n){ 
-        sdata[ltid] = a[tid];
-    }
-    __syncthreads();
-    int s = blockDim.x >> 1;
-    while(s > 0){
-        if(ltid < s){
-            sdata[ltid] += sdata[ltid + s];
-        }
-        s = s >> 1;
-        __syncthreads();
-    }
-    if(ltid == 0){
-        atomicAdd(&a[0], sdata[0]);
-    }
 }
 
 
