@@ -7,7 +7,7 @@
 //      a) funcion saxpy1 manual con particion segmentos continuos
 //      b) funcion saxpy2 manual con particion segmentos intercalados
 // (2) experimente comparando el resultado de cada metodo a distintos tamanos
-// (3) saque conclusiones sobre el rendimiento obtenido en funcion de n, p y el mapeo de hilos
+// (3) saque conclusiones sobre el rendimiento obtenido en funcion de n y el mapeo de hilos
 // (4) compare el rendimiento de esta solucion vs el de CPU + OpenMP.
 
 void imprime(float *a, int n);

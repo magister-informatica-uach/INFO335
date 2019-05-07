@@ -12,13 +12,15 @@ void printmat(int *a, int n, const char *name);
 int diffmat(int *a, int *b, int n, const char *mesg);
 
 int main(int argc, char **argv){
-    if(argc != 4){
-        fprintf(stderr, "run as ./prog n b printflag\n");
+    if(argc != 5){
+        fprintf(stderr, "run as ./prog n b nt printflag\n");
         exit(EXIT_SUCCESS);
     }
     double t1, t2, taux;
     int n = atoi(argv[1]);
     int bsize = atoi(argv[2]);
+    int nt = atoi(argv[3]);
+    omp_set_num_threads(nt);
     int *a, *b, *c1, *c2;
     a = (int*)malloc(sizeof(int) * n * n);
     b = (int*)malloc(sizeof(int) * n * n);
@@ -42,7 +44,7 @@ int main(int argc, char **argv){
     t2 = omp_get_wtime() - taux;
 
 
-    if(atoi(argv[3]) == 1){
+    if(atoi(argv[4]) == 1){
         printmat(c1, n, "c1 naive");
         printmat(c2, n, "c2 blocked");
         diffmat(c1, c2, n, "c1-c2");
@@ -65,9 +67,30 @@ void matmul(int *a, int *b, int *c, int n){
     }
 }
 
+void matmul_accum(int oi, int oj, int k, int *a, int *b, int *c, int n, int bsize){
+    for(int i=0; i<bsize; ++i){
+        for(int j=0; j<bsize; ++j){
+            int val = 0;
+            for(int r=0; r<bsize; ++r){
+                val += a[(i+oi)*n+(k*bsize + r)] * b[(k*bsize + r)*n + (j+oj)];
+            }
+	    //printf("val = %i\n", val);
+	    //getchar();
+            c[(i+oi)*n + (j+oj)] += val;
+        }
+    }
+}
 // implementar
 void block_matmul(int *a, int *b, int *c, int n, int bsize){
-
+    int blocks = n/bsize;
+    #pragma omp parallel for
+    for(int i=0; i<n; i=i+bsize){
+        for(int j=0; j<n; j=j+bsize){
+            for(int k=0; k<blocks; ++k){
+                matmul_accum(i, j, k, a, b, c, n, bsize);
+            }
+        }
+    }
 }
 
 

@@ -8,6 +8,6 @@ estructura de las matrices ni crear matrices nuevas.
 2) Encuentre cual es el valor de bloque optimo que entrega el mejor rendimiento
 para matrices grandes, como n=1024. Condirere B en potencias de 2.
 
-3) Paralelize el algoritmo para acelerar aun mas el rendimiento.
+3) Paralelice el algoritmo para acelerar aun mas el rendimiento.
 
 4) Descubra una tercera forma de mejorar los accesos a memoria.

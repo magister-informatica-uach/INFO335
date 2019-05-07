@@ -10,10 +10,41 @@
 
 // GPU matmul basico
 __global__ void kernel_matmul(int n, float *a, float *b, float *c){
+	int tx = blockIdx.x * blockDim.x + threadIdx.x;
+	int ty = blockIdx.y * blockDim.y + threadIdx.y;
+	float sum = 0.0f;
+	for(int k=0; k<n; ++k){
+		sum += a[ty*n + k]*b[k*n + tx];
+	}
+	c[ty*n + tx] = sum;
 }
 
 // GPU matmul shared memory 
 __global__ void kernel_matmulsm(int n, float *a, float *b, float *c){
+	__shared__ float as[BSIZE2D*BSIZE2D];	
+	__shared__ float bs[BSIZE2D*BSIZE2D];	
+	__shared__ float cs[BSIZE2D*BSIZE2D];	
+
+	int tx = blockIdx.x * blockDim.x + threadIdx.x;
+	int ty = blockIdx.y * blockDim.y + threadIdx.y;
+	int ltx = threadIdx.x;
+	int lty = threadIdx.y;
+
+        cs[lty*BSIZE2D + ltx] = 0;
+	// (1) hacer 'k' veces la version bloque 
+	for(int k=0; k<n; k=k+BSIZE2D){
+	// 	(a) cargar datos en as,bs. Escribir resultados en cs
+	//	(b) sincorinizar la carga en as, bs, antes de calcular cs.
+		as[lty*BSIZE2D + ltx] = a[ty*n + (k + ltx)];
+		bs[lty*BSIZE2D + ltx] = b[(k + lty)*n + tx];
+		__syncthreads();
+		for(int r=0; r<BSIZE2D; ++r){
+			cs[lty*BSIZE2D + ltx] += as[lty*BSIZE2D + r]*bs[r*BSIZE2D + ltx];
+		}
+		__syncthreads();
+	}
+	// (2) escribir cs en c
+        c[ty*n + tx] = cs[lty*BSIZE2D + ltx];
 }
 
 void matrandom(int n, float *m){
@@ -92,7 +123,8 @@ int main(int argc, char **argv){
     dim3 block(BSIZE2D, BSIZE2D, 1);
     dim3 grid((n+BSIZE2D-1)/BSIZE2D, (n+BSIZE2D-1)/BSIZE2D, 1); 
     cudaEventRecord(start);
-    kernel_matmul<<<grid, block>>>(n, ad, bd, cd);
+    //kernel_matmul<<<grid, block>>>(n, ad, bd, cd);
+    kernel_matmulsm<<<grid, block>>>(n, ad, bd, cd);
     cudaDeviceSynchronize();
     cudaEventRecord(stop);
     float msecs = 0.0f;
