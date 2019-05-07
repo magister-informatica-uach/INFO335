@@ -12,6 +12,3 @@ II) Rendimiento
 III) Discusion
 (1) Investigue sobre la reduccion automatica y haga un ejemplo auto.c que la
 utilice. Compare resultados vs la implementacion manual.
-(2) Si el numero de threads fuese p = n, seria eficiente el costo paralelo
-comparado al costo secuencial que es O(n)?
-    costo paralelo teorico, C = (tiempo-paralelo-teorico)*(p)
