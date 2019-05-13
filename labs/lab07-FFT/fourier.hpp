@@ -136,40 +136,37 @@ void fft_iterative(TYPE* a, TYPE *X_real, TYPE *X_imag, int n)
         X_real[i] = a[rev];
         X_imag[i] = 0;
     }
-
     // j is iota
-    const complex<double> J(0, 1);
     for (int s = 1; s <= log2n; ++s) {
         int m = 1 << s; // 2 power s
         int m2 = m >> 1; // m2 = m/2 -1
-        cd w(1, 0);
-
+        TYPE wr = 1.0;
+        TYPE wi = 0.0;
         // principle root of nth complex
         // root of unity.
-        cd wm = exp(J * (PI / m2));
+        TYPE wmr = cos(PI/m2);
+        TYPE wmi = sin(PI/m2);
+
         for(int j = 0; j < m2; ++j) {
             for(int k = j; k < n; k += m){
                 // t = twiddle factor
-                //cd t = w * A[k + m2];
-                //cd u = A[k];
-                complex<double> q1(X_real[k+m2], X_imag[k+m2]);
-                complex<double> q2(X_real[k], X_imag[k]);
-                cd t = w * q1;
-                cd u = q2;
+                TYPE tr = wr*X_real[k+m2] - wi*X_imag[k+m2];
+                TYPE ti = wr*X_imag[k+m2] + wi*X_real[k+m2];
+                TYPE ur = X_real[k];
+                TYPE ui = X_imag[k];
 
                 // similar calculating y[k]
-                //A[k] = u + t;
-                X_real[k] = (u + t).real();
-                X_imag[k] = (u + t).imag();
+                X_real[k] = ur + tr;
+                X_imag[k] = ui + ti;
 
                 // similar calculating y[k+n/2]
-                //A[k + m2] = u - t;
-                X_real[k + m2] = (u - t).real();
-                X_imag[k + m2] = (u - t).imag();
+                X_real[k + m2] = ur - tr;
+                X_imag[k + m2] = ui - ti;
             }
-            w *= wm;
+            double aux1=wr;
+            wr = wr*wmr - wi*wmi;
+            wi = aux1*wmi + wi*wmr;
         }
     }
 }
-
 #endif
