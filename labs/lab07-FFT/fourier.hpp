@@ -142,7 +142,7 @@ void fft_iterative(TYPE* a, TYPE *X_real, TYPE *X_imag, int n)
         // principle root of nth complex
         // root of unity.
         TYPE wmr = cos(PI/m2);
-        TYPE wmi = sin(PI/m2);
+        TYPE wmi = -sin(PI/m2);
 
         for(int j = 0; j < m2; ++j) {
             for(int k = j; k < n; k += m){
