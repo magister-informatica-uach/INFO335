@@ -32,7 +32,6 @@ int read_array(TYPE** x)
     }
     in.close();    
     return N;
-
 }
 
 
@@ -114,11 +113,9 @@ int mylog2(int x){
 
 // Utility function for reversing the bits
 // of given index x
-unsigned int bitReverse(unsigned int x, int log2n)
-{
+unsigned int bitReverse(unsigned int x, int log2n){
     int n = 0;
-    for (int i = 0; i < log2n; i++)
-    {
+    for (int i = 0; i < log2n; i++){
         n <<= 1;
         n |= (x & 1);
         x >>= 1;
