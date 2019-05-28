@@ -1,0 +1,17 @@
+
+
+
+1) Pruebe el ejemplo de prefix sum entregado. Los valores de input son n=2^k, k un numero arbitrario, y nt = numero de threads que lo usara despues.
+
+2) Trate de entender bien como funciona la recursividad.
+
+3) Identifique donde puede realizar computacion paralela e inserte directivas OpenMP para que la funcion de prefix sum ocurra en paralelo.
+
+4) Vea como se comporta el Speedup y Efficiency en su computador o servidor apophis.
+
+5) Trate de implementar la version no-recursiva del prefix sum y comparela con la recursiva usando las metricas de rendimiento vistas.
+-- apoyarse del libro de Jaja, capitulo de prefx sum.
+
+
+
+

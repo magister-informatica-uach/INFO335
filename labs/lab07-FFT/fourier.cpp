@@ -19,9 +19,9 @@ const TYPE pi = acos(-1);
 
 int main(int argc, char** argv)
 {
-    if(argc != 2)
+    if(argc != 3)
     {
-        fprintf(stderr, "Ejecutar como ./prog mode\n-mode=0: naive DFT\n-mode=1 Radix-2 FFT\n-mode=2 Cooley-Tuckey FFT (iterative)\n");
+        fprintf(stderr, "Ejecutar como ./prog mode\n-mode=0: naive DFT\n-mode=1 Radix-2 FFT nt\n-mode=2 Cooley-Tuckey FFT (iterative)\nnt=num_threads");
         exit(EXIT_FAILURE);
     }
     int mode = atoi(argv[1]);
