@@ -1,0 +1,8 @@
+# LAB de HASKELL PART 2
+
+(1) Lazy evaluation in Haskell
+
+
+(2) Instalar paquete parallel
+    cabal install parallel
+

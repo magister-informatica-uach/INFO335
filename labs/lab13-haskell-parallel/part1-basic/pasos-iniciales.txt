@@ -1,0 +1,16 @@
+*********************************************************
+*********************************************************
+************ BIENVENIDO A TUTORIAL HASKELL **************
+*********************************************************
+*********************************************************
+
+(1) Instalar GHC (Glasgow Haskell Compiler)
+# busca GHC en tu repositorio, e instalalo, por ejemplo en arch linux 
+sudo pacman -S ghc
+sudo pacman -S ghc-libs
+sudo pacman -S ghc-static
+
+(2) Instala cabal (administrador de paquetes de Haskell), en arch seria
+sudo pacman -S cabal-install
+
+

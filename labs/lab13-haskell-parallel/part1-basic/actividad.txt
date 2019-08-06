@@ -1,0 +1,48 @@
+# En esta actividad usted aprendera algunos comandos basicos y 
+# escenciales de Haskell.
+
+PARTE (I) BASICO
+
+(1) Existe GHCi (modo interactivo) y GHC como compilador. Ambos pueden ser usados en 
+la mayoria de los ejercicios.
+
+(2) Usando GHCi, es similar a Python interactivo. Primero usemos ghci> como nuestro prompt:
+    - crear archivo en home llamado .ghci y agregar
+    :set prompt "ghci> "
+
+(3) ejecutar GHCi, 
+    probaremos algunos comandos
+    - operaciones aritmeticas, asociatividad
+    - boolean logic
+    - mixing types
+
+
+(4) usando funciones 
+    - succ, min, max
+    - funciones propias (guardarla en un archivo baby.hs)
+
+(5) listas
+    - listas y sus operaciones
+    - creando listas con rangos
+    - listas infinitas
+    - list comprehensions (creacion, tuplas)
+
+(6) tipos de datos
+
+(7) pattern matching para funciones
+
+(8) recursion
+        - maximum
+        - take
+        - reverse
+        - repeat
+        - zip
+        - elem
+        - quicksort
+        - fibonacci
+
+(9) map
+
+(10) Monoids, Functors y Monads
+
+(11) Programas compilados
