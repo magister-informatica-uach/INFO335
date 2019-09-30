@@ -43,6 +43,12 @@ void initialize_spins(int* spin, const int L) {
     for (int y = 0; y < L; y++) {
       for (int x = 0; x < L; x++) {
         spin[x + L * y] = 1;
+	/* Matrix nxn
+	 * tipica java [i][j]
+	 * lineal, una matriz esta asi en memoria; f1...f2...f3...fn
+	 * int *M[n*n]
+	 * M[i*n + j] 
+	 */
       }
     }
   }
@@ -133,16 +139,28 @@ void average_measure(unsigned* rngs, int* spin, const int L,
 }
 
 void print_lattice(int *spin, const int L){
+  for (int i = 0; i < L; i++){
+    for (int j = 0; j < L; j++){
+	    if( spin[i*L+j] == 1){
+		    printf("*");
+	    }
+	    else{
+		    printf(" ");
+	    }
+    }
+    printf("\n");
+  }
 }
 
 int main(int argc, char** argv) {
-    if(argc != 3){
-        fprintf(stderr, "run as ./prog L steps\n");
+    if(argc != 4){
+        fprintf(stderr, "run as ./prog L steps temp\n");
         exit(1);
     }
     // parameters
     const int L = atoi(argv[1]);
     const int steps  = atoi(argv[2]);
+    const double temp = atoi(argv[3]);
     int* spin;
     // measurements
     // set rng streams
@@ -158,7 +176,8 @@ int main(int argc, char** argv) {
     // initialize energy tables
     real* exptable;
     exptable = (real*)malloc(sizeof(real) * 9);    
-    real kT = 2.0 / log(1 + sqrt(2));
+    real kT = temp;
+    //real kT = 2.0 / log(1 + sqrt(2));
     fill_exptable(exptable, 1.0 / kT);
     // equilibriate
     int steps_equilibriate = steps;
