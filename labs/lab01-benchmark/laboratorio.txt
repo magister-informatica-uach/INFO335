@@ -1,6 +1,6 @@
 lab01 - benchmark
 
-En este laboratorio usted ejecutara pruebas de rendimiento de CPU, I/O y GPU.
+En este lab usted ejecutara pruebas de rendimiento para distintas partes de su computador.
 
 Actividad:
 1) Mida rendimiento de CPU usando linpack. Haga un grafico de GFLOPS vs size

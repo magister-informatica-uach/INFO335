@@ -10,7 +10,7 @@ Se recomienda mantener una copia local del material del curso clonando este repo
 ***
 ## Abstract
 
-La asignatura de **Computación de Alto Rendimiento** introduce al estudiante conceptos fundamentales de **Computacion Paralela** preparándolo para poder entender y proponer algoritmos paraleos y eficientes que utilizen los recursos computacionales disponibles. Para ello se consideran los aspectos teóricos y practicos del analisis y diseño de algoritmos. 
+La asignatura de **Computación de Alto Rendimiento** introduce al estudiante conceptos fundamentales de **Computacion Paralela** preparándolo para poder entender y proponer algoritmos paralelos y eficientes que utilizen los recursos computacionales disponibles. Para ello se consideran los aspectos teóricos y prácticos del análisis y diseño de algoritmos. 
 ## Contenidos
 
 - **Unidad 1:** ¿Qué es la computación de alto rendimiento?

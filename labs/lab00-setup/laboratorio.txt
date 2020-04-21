@@ -1,0 +1,37 @@
+lab00 - setup
+
+En este laboratorio usted entrara a un servidor y tambien aprendera
+formas de conocer el hardware de la maquina.
+
+Actividad:
+1) Acceso a GUANACO (servidor HPC de Informatica)
+    a) generar una llave publica ssh (sin passphrase)
+        > ssh-keygen -t rsa -b 4096
+    b) Enviar la llave publica a su profesor por slack. Enviar el output de:
+        > cat ~/.ssh/id_rsa.pub
+    c) crear nombre de usuario. Usar [inicial nombre][apellido], ejemplo 'cnavarro'.
+    d) Agregar entry de guanaco en config de ssh:
+        i) editar archivo ~/.ssh/config
+        ii) agregar entry (respetar indentacion):
+            Host guanaco
+                HostName 146.83.216.158
+                Port 22334
+                User USUARIO
+                IdentityFile ~/.ssh/id_rsa
+        iii) guardar archivo, salir.
+    e) Entrar a guanaco
+        > ssh guanaco
+
+
+2) Encontrar caracteristicas hardware de guanaco, averigue:
+    a) Cantidad de RAM, tipo (DDR cuanto) y velocidad.
+    b) Cantidad de Almacenamiento y tipo (HDD?, SDD?).
+    c) Cantidad de nucleos CPUs. y si tiene o no hyper-threading (buscar si no conoce el termino)
+    d) Cantidad de CPUs, modelo, # nucleos y cantidad de cache
+    e) Cantidad de GPUs, modelo, memoria, nucleos.
+    f) Tipo de interfaz de red y velocidad.
+
+3) Cual seria la mayor capacidad teorica de rendimiento?:
+    a) Operaciones punto flotante/sec: FLOPS
+    b) Ancho de banda a la memoria: MB/sec
+
