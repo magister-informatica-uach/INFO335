@@ -52,6 +52,7 @@ void matrandom(int n, float *m){
     for(int i=0; i<n; ++i){
         for(int j=0; j<n; ++j){
             m[i*n + j] = (float)rand()/((float)RAND_MAX);
+            //m[i*n + j] = i;
         }
     }
 }
@@ -91,6 +92,7 @@ int main(int argc, char **argv){
         exit(EXIT_FAILURE);
     }
     int n = atoi(argv[1]);
+    float msecs = 0.0f;
 
     // (1) creando matrices en host
     float *a = new float[n*n];
@@ -117,19 +119,18 @@ int main(int argc, char **argv){
 
     // (3) ejecutar matmul en GPU
     printf("computing C = A x B........"); fflush(stdout);
-    cudaEvent_t start, stop;
-    cudaEventCreate(&start);
-    cudaEventCreate(&stop);
-    dim3 block(BSIZE2D, BSIZE2D, 1);
-    dim3 grid((n+BSIZE2D-1)/BSIZE2D, (n+BSIZE2D-1)/BSIZE2D, 1); 
-    cudaEventRecord(start);
-    //kernel_matmul<<<grid, block>>>(n, ad, bd, cd);
-    kernel_matmulsm<<<grid, block>>>(n, ad, bd, cd);
-    cudaDeviceSynchronize();
-    cudaEventRecord(stop);
-    float msecs = 0.0f;
-    cudaEventSynchronize(stop);
-    cudaEventElapsedTime(&msecs, start, stop);
+        cudaEvent_t start, stop;
+        cudaEventCreate(&start);
+        cudaEventCreate(&stop);
+        dim3 block(BSIZE2D, BSIZE2D, 1);
+        dim3 grid((n+BSIZE2D-1)/BSIZE2D, (n+BSIZE2D-1)/BSIZE2D, 1); 
+        cudaEventRecord(start);
+        kernel_matmul<<<grid, block>>>(n, ad, bd, cd);
+        //kernel_matmulsm<<<grid, block>>>(n, ad, bd, cd);
+        cudaDeviceSynchronize();
+        cudaEventRecord(stop);
+        cudaEventSynchronize(stop);
+        cudaEventElapsedTime(&msecs, start, stop);
     printf("ok: time: %f secs\n", msecs/1000.0f);
 
     // (4) copiar resultado a host
