@@ -1,2 +1,8 @@
-descargar linpack:
+1) descargar linpack:
 http://www.panticz.de/Linpack
+
+2) [ALTERNATIVA] Puede encontrar el paquete en su repositorio
+    Ejemplo, Arch Linux:
+        $ yay -S linpack
+
+        $ /usr/bin/linpack_runme_xeon64

@@ -1,0 +1,8 @@
+clonar https://github.com/raas/mbw
+compilar
+    make
+ejecutar
+    ./mbw <MBytes>
+
+
+

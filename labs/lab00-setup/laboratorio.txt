@@ -31,6 +31,7 @@ Actividad:
     e) Cantidad de GPUs, modelo, memoria, nucleos.
     f) Tipo de interfaz de red y velocidad.
 
+
 3) Cual seria la mayor capacidad teorica de rendimiento?:
     a) Operaciones punto flotante/sec: FLOPS
     b) Ancho de banda a la memoria: MB/sec

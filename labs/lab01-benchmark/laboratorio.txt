@@ -1,22 +1,38 @@
 lab01 - benchmark
 
 En este lab usted ejecutara pruebas de rendimiento para distintas partes de su computador.
+Los graficos los puede realizar usando la herramienta de su preferencia.
 
 Actividad:
-1) Mida rendimiento de CPU usando linpack. Haga un grafico de GFLOPS vs size
-para distinto numero de threads.
+1) TEST CPU:
+Mida rendimiento de CPU de guanaco usando linpack. Haga un grafico de GFLOPS vs size
+para distinto numero de threads. Mida el rendimiento de su laptop tambien descargando
+linpack.
 
-2) Mida rendimiento de I/O para mover 1GB, usando distintas combinaciones de bs
-y count (siempre formando un total de 1GB). Haga esto con y sin cache. Haga un
-grafico de GB/sec vs bs con ambas curvas dentro, Cada punto debe ser la media
-aritmetica de al menos 4 repeticiones.
 
-3) Ejecute el test de GPU 'unigine heaven' y observe FPS maximo, minimo y
-promedio. Tambien busque la forma de monitorear los valores de temperatura de la
-CPU y GPU durante el benchmark.
+2) TEST I/O:
+Mida rendimiento de I/O para mover 1GB, usando distintas combinaciones de bs y count
+(siempre formando un total de 1GB). Haga un grafico de GB/sec vs bs en version count=1 y
+count=1000. Cada punto debe ser la media aritmetica de al menos 4 repeticiones. Haga el
+mismo test en su maquina. Haga un grafico de ancho de banda (Bytes/sec) en funcion del
+tamano del bloque, con un count suficientemente grande.
 
-4) Presentar un resumen y conclusiones sobre los resultados obtenidos, desde el
-punto de vista de rendimiento en funcion de nucleos, GFlops, eficiencia, ancho
-de banda y rendimiento grafico.  Mandar un e-mail a cnavarro@inf.uach.cl con
+
+3) TEST MEM-BANDWITH:
+Ejecute el test de ancho de banda de memoria y haga un grafico Bytes/sec vs MBytes.
+
+
+4) TEST GPU:
+Escoja uno de los tests disponibles en el sitio web https://benchmark.unigine.com/
+Ejecute el benchmark, guarde los resultados y encuentre la forma de medir temperatura y
+energia usada mientras el benchmark ejecuta. (Si el benchmark ya lo hace, vea una forma
+alternativa para situaciones en que el benchmark no lo incluya). Para este test, grafique
+temperatura vs tiempo y energia vs tiempo.
+
+
+5) Presentar un reporte en formato-email donde comente sus resultados obtenidos,
+desde el punto de vista de rendimiento en funcion de nucleos, GFlops, eficiencia, ancho
+de banda y rendimiento grafico. Adjunte sus graficos (4 en total) en el e-mail.
+Mandar un e-mail a cnavarro@inf.uach.cl con
 asunto [INFO335-lab01-benchmark] [NOMBRE]
 
