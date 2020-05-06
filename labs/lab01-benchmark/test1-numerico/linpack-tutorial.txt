@@ -3,6 +3,8 @@ http://www.panticz.de/Linpack
 
 2) [ALTERNATIVA] Puede encontrar el paquete en su repositorio
     Ejemplo, Arch Linux:
+        # instalar
         $ yay -S linpack
 
+        # ejecutar
         $ /usr/bin/linpack_runme_xeon64

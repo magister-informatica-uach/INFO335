@@ -6,8 +6,7 @@ Los graficos los puede realizar usando la herramienta de su preferencia.
 Actividad:
 1) TEST CPU:
 Mida rendimiento de CPU de guanaco usando linpack. Haga un grafico de GFLOPS vs size
-para distinto numero de threads. Mida el rendimiento de su laptop tambien descargando
-linpack.
+para 1 thread, ncores/2 threads y ncores threads (un plot, 3 curvas dentro). Mida el rendimiento de su laptop tambien descargando linpack.
 
 
 2) TEST I/O:
@@ -23,11 +22,11 @@ Ejecute el test de ancho de banda de memoria y haga un grafico Bytes/sec vs MByt
 
 
 4) TEST GPU:
-Escoja uno de los tests disponibles en el sitio web https://benchmark.unigine.com/
-Ejecute el benchmark, guarde los resultados y encuentre la forma de medir temperatura y
-energia usada mientras el benchmark ejecuta. (Si el benchmark ya lo hace, vea una forma
-alternativa para situaciones en que el benchmark no lo incluya). Para este test, grafique
-temperatura vs tiempo y energia vs tiempo.
+Escoja uno de los tests disponibles en el sitio web https://benchmark.unigine.com/ Ejecute
+el benchmark, guarde los resultados (FPS max, min, avg) y encuentre la forma de medir
+temperatura y energia usada mientras el benchmark ejecuta. (Si el benchmark ya lo hace,
+vea una forma alternativa para situaciones en que el benchmark no lo incluya). Para este
+test, grafique temperatura vs tiempo y energia vs tiempo.
 
 
 5) Presentar un reporte en formato-email donde comente sus resultados obtenidos,

@@ -4,5 +4,7 @@ compilar
 ejecutar
     ./mbw <MBytes>
 
+# ejemplo ./mbw 1024
+
 
 
