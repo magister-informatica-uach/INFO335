@@ -4,11 +4,13 @@
 #include <omp.h>
 
 // (1) haga un programa saxpy en CUDA, de distintas formas
-//      a) funcion saxpy1 manual con particion segmentos continuos
-//      b) funcion saxpy2 manual con particion segmentos intercalados
-// (2) experimente comparando el resultado de cada metodo a distintos tamanos
-// (3) saque conclusiones sobre el rendimiento obtenido en funcion de n y el mapeo de hilos
-// (4) compare el rendimiento de esta solucion vs el de CPU + OpenMP.
+//      a) funcion saxpy1 con mapeo de threads intercalado usando n/100 threads.
+//      b) funcion saxpy2 con mapeo de threads continuo usando n/100 threads.
+//      c) funcion saxpy3 con mapeo de threads intercalado usando n threads.
+// (2) Experimente con cada metodo a distintos tamanos y descubra cual rinde mejor.
+// (3) Grafique tiempo vs n, incluyendo curvas para a) b) c).
+// (4) Reporte conclusiones sobre el rendimiento obtenido y contraste cada approach.
+// (5) Compare el rendimiento vs Saxpy OpenMP, cual es mas rapida? por cuanto?
 
 void imprime(float *a, int n);
 void cpu(float a, float *x, float *y, float *z, int n);
