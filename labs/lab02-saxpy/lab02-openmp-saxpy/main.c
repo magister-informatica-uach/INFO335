@@ -6,6 +6,15 @@
 // MORALEJA: en CPU multicore, conviene asignar segmentos continuos de memoria a los threads.
 //  => localidad    < t0 >  < t1 >  .... < tn > 
 //
+// BUENO EN CPU
+// x1 x2 x3 x4 x5 x6 x7 x8 x9
+// t1 t1 t1 t2 t2 t2 t3 t3 t3
+//
+// MALO EN CPU
+// x1 x2 x3 x4 x5 x6 x7 x8 x9
+// t1 t2 t3 t1 t2 t3 t1 t2 t3
+//
+//
 // saxpy es un ejemplo HPC sencillo ==> Hola Mundo de HPC
 // SAXPY => S = aX + Y   S, X, Y vectores de n dimensiones
 // SAXPY se usa porque es sencillo, como hola mundo, pero no explota la CPU al 100%.
@@ -80,6 +89,9 @@ void saxpy3(int *s, int *x, int *y, int n, int a, int nt){
 // (4) funcion saxpy4 manual con particion accesos intercalados 
 // x1 x2 x3 x4 x5 x6 x7 x8 x9
 // t1 t2 t3 t1 t2 t3 t1 t2 t3
+//
+// x1 x2 x3 x4 x5 x6 x7 x8 x9 x10
+// t0 t1 t2 t0 t1 t2 t0 t1 t2  t0  t1
 void saxpy4(int *s, int *x, int *y, int n, int a, int nt){
     #pragma omp parallel shared(s, x, y, n, a, nt)
     {
