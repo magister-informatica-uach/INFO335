@@ -105,7 +105,6 @@ void saxpy4(int *s, int *x, int *y, int n, int a, int nt){
     }
 }
 
-
 void print_vec(int *a, int n, const char *msg){
     if(n > 32){ return; }
     printf("%s\n[", msg);

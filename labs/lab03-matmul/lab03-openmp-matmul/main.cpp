@@ -27,21 +27,28 @@ int main(int argc, char **argv){
     c1 = (int*)malloc(sizeof(int) * n * n);
     c2 = (int*)malloc(sizeof(int) * n * n);
 
+    printf("Using %i threads\n", nt);
     // init
+    printf("init matrices......"); fflush(stdout);
     initmati(a, n);
     initmati(b, n);
     initmat(c1, n, 0);
     initmat(c2, n, 0);
+    printf("done\n"); fflush(stdout);
 
     // basico
+    printf("matmul............."); fflush(stdout);
     taux = omp_get_wtime();
     matmul(a, b, c1, n);
     t1 = omp_get_wtime() - taux;
+    printf("done: %f secs\n", t1); fflush(stdout);
 
     // blocked lines
+    printf("matmul-block......."); fflush(stdout);
     taux = omp_get_wtime();
     block_matmul(a, b, c2, n, bsize);
     t2 = omp_get_wtime() - taux;
+    printf("done: %f secs\n", t2); fflush(stdout);
 
 
     if(atoi(argv[4]) == 1){
@@ -51,11 +58,12 @@ int main(int argc, char **argv){
     }
 
     printf("diff sum(c1[i] - c2[i])^2 = %i\n", sqdiffmat(c1, c2, n));
-    printf("classic matmul t1 = %f\nblock matmul t2 = %f\n", t1, t2);
+    printf("classic matmul t1 = %f secs\nblock matmul t2 = %f secs\n", t1, t2);
     return 0;
 }
 
 void matmul(int *a, int *b, int *c, int n){
+    #pragma omp parallel for
     for(int i=0; i<n; ++i){
         for(int j=0; j<n; ++j){
             int val = c[i*n + j];
@@ -74,8 +82,6 @@ void matmul_accum(int oi, int oj, int k, int *a, int *b, int *c, int n, int bsiz
             for(int r=0; r<bsize; ++r){
                 val += a[(i+oi)*n+(k*bsize + r)] * b[(k*bsize + r)*n + (j+oj)];
             }
-	    //printf("val = %i\n", val);
-	    //getchar();
             c[(i+oi)*n + (j+oj)] += val;
         }
     }
