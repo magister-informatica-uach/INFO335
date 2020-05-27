@@ -3,11 +3,24 @@
 #include <cuda.h>
 #include <omp.h>
 
+// MORALEJA
+
+// MALO EN GPU
+// x1 x2 x3 x4 x5 x6 x7 x8 x9
+// t1 t1 t1 t2 t2 t2 t3 t3 t3
+//
+
+
+// BUENO EN GPU
+// x1 x2 x3 x4 x5 x6 x7 x8 x9
+// t1 t2 t3 t1 t2 t3 t1 t2 t3
+
 // (1) haga un programa saxpy en CUDA:
 //      a) funcion saxpy con mapeo de threads intercalado usando n threads (1 thread por dato).
 // (2) Grafique tiempo vs n.
 // (3) Reporte conclusiones sobre el rendimiento obtenido.
 // (4) Compare el rendimiento vs Saxpy OpenMP, cual es mas rapida? por cuanto?
+// (5) Haga un grafico con un 'n' grande, de tiempo vs blocksize. Cual fue el mejor blocksize?
 
 
 // CUDA:  sintaxis c++ con adicion de palabras claves para GPU
@@ -26,6 +39,7 @@
 // Host continue...
 
 // Kernel
+
 __global__ void mikernel(float a, float *x, float *y, float *s, int n){
     // SAXPY en GPU 
     // instrucciones GPU
