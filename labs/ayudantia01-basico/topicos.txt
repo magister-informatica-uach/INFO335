@@ -1,0 +1,55 @@
+* herramientas recomendadas en HPC
+    i) Linux (instalar paquetes, configurar su sistema, saber googlear por errores)
+    ii) Manejo de terminal
+    iii) Manejar algun editor via terminal (nano, vim, vi)
+
+* desenvolverse usando un servidor
+    a) conectarse
+        ssh (usar config de ~/.shh/config)
+    b) transferir archivos
+        scp origen destino  (usar -r para directorios)
+        # ejemplo
+        scp -r lab02-saxpy cnavarro@guanaco:
+        # existe otro comando, "rsync" (para actualizar repositorios grandes)
+    c) programar remotamente
+        # nano o vim (o vi)
+        # Makefile que sea compatible en las multiples maquinas
+        # Makefile puede recibir argumentos y generar multiples versiones de su codigo
+        (DEBUG, VERSION FINAL, INTERACTIVA, ETC)
+
+*) entorno de programacion
+    # Estandar C/C++
+        *) Para trabajar en Guanaco: esta todo instalado, solo programar.
+        *) para C/C++ y OpenMP:
+            Compilador GCC (incluye los comandos gcc y g++) (desde repositorio de su distribucion Linux)
+        *) para CUDA:
+            - GPU Nvidia (ojala del 2015+)
+            - CUDA Toolkit instalado (eso trae todo incluso el driver)
+            - Driver Nvidia (deberia venir instalado con CUDA)
+            - Ademas GCC
+        i) OpenMP (C/C++)
+            *) Tiene dos grandes modos
+                I) Automatico (usar patrones predefinidos)
+                    a) #pragma omp parallel for         (args...)
+                    b) #pragma omp parallel reduction   (args...)
+                    c) ..
+                II) Manual
+                    a) #omp pragma parallel
+                    {
+                        .... threads libremente en paralelo
+                        *) pensar para cada thread:
+                            i) donde comienza a trabajar en la memoria
+                            ii) cuantos datos continuos trabaja
+                    }
+
+        ii) CUDA (C/C++)
+        iii) MPI (mas C, hartos parametros del estilo PARAMETRO_MPI)
+
+
+*) refresco de C++
+
+*) escenciales de OpenMP
+
+*) entorno CPU <--> GPU
+
+*) nocion de programacion GPU

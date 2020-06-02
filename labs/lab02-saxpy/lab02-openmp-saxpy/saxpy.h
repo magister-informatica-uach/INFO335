@@ -1,7 +1,4 @@
-#include <cstdlib>
-#include <cstdio>
-#include <omp.h>
-
+#pragma once
 // lab02-openmp-saxpy. Puede usar guanaco siempre que este disponible.
 // MORALEJA: en CPU multicore, conviene asignar segmentos continuos de memoria a los threads.
 //  => localidad    < t0 >  < t1 >  .... < tn > 
@@ -79,7 +76,7 @@ void saxpy3(int *s, int *x, int *y, int n, int a, int nt){
         // c) donde comienza cada thread
         int start = subsize * tid;
         // d) procesar el lote que corresponde
-        // printf("thread %i  start  %i   subsize%i\n", tid, start, subsize);
+        printf("thread %i  start  %i   subsize%i\n", tid, start, subsize);
         for(int i=start; i< start + subsize && i<n; ++i){
             s[i] = a*x[i] + y[i];
         }
@@ -124,55 +121,4 @@ void print_vec(int *a, int n, const char *msg){
         printf("%i ", a[i]);
     }
     printf("]\n");
-}
-
-int main(int argc, char **argv){
-    if(argc != 5){
-        fprintf(stderr, "error, ejecutar como: ./prog N nt metodo chunksize\n");
-        exit(EXIT_FAILURE);
-    }
-    unsigned long N = atoi(argv[1]);
-    unsigned int nt = atoi(argv[2]);
-    unsigned int m = atoi(argv[3]);
-    unsigned int cs = atoi(argv[4]);
-    // funciones OpenMP comienzan con omp_...
-    omp_set_num_threads(nt);
-    double t1=0.0, t2=0.0;
-    // creacion de los vectores
-    int *x = new int[N];
-    int *y = new int[N];
-    int *s = new int[N];
-    // inicializar vectores
-    init_vec(x, N, 1);
-    print_vec(x, N, "vector x");
-    init_vec(y, N, 2);
-    print_vec(y, N, "vector y");
-    init_vec(s, N, 0);
-    int alpha = 1;
-
-    printf("calculando SAXPY con a=%i.......", alpha); fflush(stdout);
-    t1 = omp_get_wtime();
-    // calculo saxpy
-    switch(m){
-	    case 1:
-		printf("saxpy1\n");
-		saxpy1(s, x, y, N, alpha, cs);
-		break;
-	    case 2:
-		printf("saxpy2\n");
-		saxpy2(s, x, y, N, alpha, cs);
-		break;
-	    case 3:
-		printf("saxpy3\n");
-		saxpy3(s, x, y, N, alpha, nt);
-		break;
-	    case 4:
-		printf("saxpy4\n");
-		saxpy4(s, x, y, N, alpha, nt);
-		break;
-    }
-    t2 = omp_get_wtime();
-    printf("done\n"); fflush(stdout);
-    print_vec(s, N, "vector S");
-    printf("N=%i    threads=%i   %f secs\n", N, nt, t2-t1);
 }
