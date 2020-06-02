@@ -75,28 +75,8 @@ void matmul(int *a, int *b, int *c, int n){
     }
 }
 
-void matmul_accum(int oi, int oj, int k, int *a, int *b, int *c, int n, int bsize){
-    for(int i=0; i<bsize; ++i){
-        for(int j=0; j<bsize; ++j){
-            int val = 0;
-            for(int r=0; r<bsize; ++r){
-                val += a[(i+oi)*n+(k*bsize + r)] * b[(k*bsize + r)*n + (j+oj)];
-            }
-            c[(i+oi)*n + (j+oj)] += val;
-        }
-    }
-}
 // implementar
 void block_matmul(int *a, int *b, int *c, int n, int bsize){
-    int blocks = n/bsize;
-    #pragma omp parallel for
-    for(int i=0; i<n; i=i+bsize){
-        for(int j=0; j<n; j=j+bsize){
-            for(int k=0; k<blocks; ++k){
-                matmul_accum(i, j, k, a, b, c, n, bsize);
-            }
-        }
-    }
 }
 
 

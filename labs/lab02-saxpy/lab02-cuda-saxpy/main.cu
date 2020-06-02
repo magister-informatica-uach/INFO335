@@ -44,7 +44,7 @@ __global__ void mikernel(float a, float *x, float *y, float *s, int n){
     // SAXPY en GPU 
     // instrucciones GPU
     // STRATEGIA: 
-    // a) calcular id del thread
+    // a) calcular id global del thread
     int tid = (blockIdx.x * blockDim.x) + threadIdx.x;
     // b) procesar "el" trabajo por thread
     if(tid < n){
