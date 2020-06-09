@@ -1,14 +1,14 @@
 LAB03 - REDUCCION:
 
 I) Implementacion
-- Implemente reduccion en cuda, manual, haciendo las recursiones (llamadas kernel)
+- Implemente reduccion en cuda, manual, haciendo las recursiones necesarias
 
 II) Rendimiento
 - Mida el tiempo en funcion de N en el rango [100.000, 1.000.000].
 - Mida el speedup vs la implementacion openmp en su mejor version, y secuencial
 
 III) Discusion
-- Comente sobre como varia el rendimiento GPU vs CPU a medida que el tamano del 
+- Comente sobre como varia el rendimiento GPU vs CPU a medida que el tamano del
 problema aumenta gradualmente.
 
 IV) Exploratorio

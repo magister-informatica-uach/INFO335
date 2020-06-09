@@ -4,34 +4,6 @@
 #include <omp.h>
 
 double parallel_reduction(double *x, long n, int nt){
-	// (1) pensar en paralelismo manual (openmp)
-	double *sumas = (double*)malloc(sizeof(double)*nt);
-	#pragma omp parallel shared(sumas)
-	{
-		int tid = omp_get_thread_num();
-		int chunk = (n + nt - 1)/nt;
-		int start = tid*chunk;
-		int end = tid*chunk + chunk;
-		//printf("soy thread %i trabajo desde %i hasta %i\n", tid, start, end);
-		// fase (1), la parte n/p
-		double lsum = 0.0f;
-		for(int i=start; i<end && i<n; ++i){
-			lsum += x[i];
-		}
-		sumas[tid] = lsum;
-		// esperamos que todos pongan su valor en sumas
-		#pragma omp barrier
-		// fase (2), reducir arreglo sumas[]
-		int l = nt/2;
-		while(l > 0){
-			if(tid < l){
-				sumas[tid] = sumas[tid] + sumas[tid+l];
-			}
-			l = l/2;
-			#pragma omp barrier
-		}
-	}
-	return sumas[0];
 }
 
 int main(int argc, char** argv){
@@ -61,4 +33,3 @@ int main(int argc, char** argv){
     free(x);
     printf("sum = %f (%f secs)\npsum = %f (%f secs)\nDONE\n", sum, tseq, psum, tpar);
 }
-// gcc main.c -o omp03redseq

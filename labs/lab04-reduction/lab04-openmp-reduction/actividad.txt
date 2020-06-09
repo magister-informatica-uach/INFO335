@@ -1,7 +1,7 @@
 LAB03 - REDUCCION:
 
 I) Implementacion
-(1) Entienda el algoritmo de seq.c y copielo a manual.c
+(1) Entienda el algoritmo de seq.c y copielo a manual.c para comenzar a trabajar en este ultimo
 (2) Usando OpenMP, intente paralelizar en manual.c la reduccion manualmente.
 
 II) Rendimiento

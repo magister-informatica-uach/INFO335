@@ -11,33 +11,6 @@ __global__ void kernel_initarray(float *a, long n){
 }
 
 __global__ void kernel_reduction(float *a, long n){
-	// (1) pasar datos de global a local
-	__shared__ float sumas[BSIZE];
-	// id local	
-	int ltid = threadIdx.x;
-	// id global
-	int tid = blockIdx.x * blockDim.x + threadIdx.x;
-	sumas[ltid] = 0.0f;
-	if(tid < n){
-		sumas[ltid] = a[tid];
-	}
-	__syncthreads();
-	// (2) reducir por bloque en memoria compartida
-	int l = BSIZE >> 1;
-	while( l > 0 ){
-		if(ltid < l){
-			sumas[ltid] += sumas[ltid + l];
-		}
-		l = l >> 1;
-		__syncthreads();
-	}	
-	// (3) reduccion global
-	// a) escribir en un resultado unico por bloque, e iterar kernel	
-	// a[blockIdx.x] = suma[0];
-	// b) sumar todos los resultados en a[0], con operaciones atomicas.
-	if(threadIdx.x == 0){
-		atomicAdd(&a[0], sumas[0]);
-	}
 }
 
 float cpu_reduction(float *a, long n){

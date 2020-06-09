@@ -1,7 +1,7 @@
 BIN=prog
 auto:
-	gcc -fopenmp -lm auto.c -o ${BIN}
+	g++ -fopenmp -lm auto.cpp -o ${BIN}
 manual:
-	gcc -fopenmp -lm manual.c -o ${BIN}
+	g++ -fopenmp -lm manual.cpp -o ${BIN}
 seq:
-	gcc -fopenmp -lm seq.c -o ${BIN}
+	g++ -fopenmp -lm seq.cpp -o ${BIN}
