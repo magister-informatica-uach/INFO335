@@ -1,8 +1,8 @@
-LAB03 - REDUCCION:
+LAB - REDUCCION:
 
 I) Implementacion
-(1) Entienda el algoritmo de seq.c y copielo a manual.c para comenzar a trabajar en este ultimo
-(2) Usando OpenMP, intente paralelizar en manual.c la reduccion manualmente.
+(1) Entienda el algoritmo de seq.cpp y copielo a manual.cpp para comenzar a trabajar en este ultimo
+(2) Usando OpenMP, intente paralelizar en manual.cpp la reduccion manualmente.
 
 II) Rendimiento
 (1) Mida el tiempo en funcion de N en el rango [100.000, 1.000.000].

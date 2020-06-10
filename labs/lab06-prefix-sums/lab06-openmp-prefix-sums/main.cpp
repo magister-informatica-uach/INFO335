@@ -10,43 +10,12 @@ void printarray(float *a,int n, const char* msg){
 	}
 	printf("\n");
 }
+
+
 void prefix(float *x,float *s,int n){
-
-	
-	if (n==1)
-	{
-		s[0]=x[0];
-		return;
-	}
-
-	float *y=(float *)malloc(sizeof(float)*n/2);
-	float *z=(float *)malloc(sizeof(float)*n/2);
-	for (int i = 0; i <n/2; ++i)
-	{
-		y[i]=x[2*i]+x[(2*i)+1];
-		z[i]=y[i];
-	}
-
-	prefix(y,z,n/2);
-	for (int i = 0; i < n; ++i)
-	{
-		
-		if (i%2==0 && i>0)
-		{
-			s[i]=z[(i/2)-1] + x[i];
-			
-		}
-		else if(i==0){
-			s[0]=x[0];
-		}
-		
-		else{
-			s[i]=z[(i-1)/2];
-		}
-	}
-	free(y);
-	free(z);
 }
+
+
 int main(int argc, char const *argv[]){
 	double t1,t2;
 	srand(time(NULL));

@@ -16,17 +16,9 @@ void printarray(int *a, int n, const char *msg){
 }
 
 void pointer_jumping(int *p, int n){
-	#pragma omp parallel
-	{
-		int c = 0;
-		int tid = omp_get_thread_num();
-		while(p[tid] != p[ p[tid] ]){
-			p[tid] = p[ p[tid] ]; 
-			printf("thread %i  it %i\n", tid, c++);
-			//#pragma omp barrier
-		}
-	}
 }
+
+
 int main(int argc, char **argv){
 	if(argc != 3){
 		fprintf(stderr, "./prog n nt\n");
