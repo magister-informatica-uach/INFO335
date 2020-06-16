@@ -5,6 +5,34 @@
 
 double parallel_reduction(double *x, long n, int nt){
     // programar en paralelo reduccion (OpenMP)
+    double *results = new double[nt];
+    #pragma omp parallel shared(results)
+    {
+        // FASE 1 ---> de n valores a nt resultados.
+        int tid = omp_get_thread_num();
+        results[tid] = 0;
+        int segment = (n + nt -1)/nt;
+        int start = segment*tid;
+        int end = start + segment;
+        // sumando segmentos en paralelo
+        for(int i=start; i<n && i<end; ++i){
+            results[tid] += x[i];
+        }
+        #pragma omp barrier
+        // terminamos con sumas parciales en "results", nos olvidamos de x
+        // FASE 2 ---> el proceso O(log n) --> terminamos 1 valor
+        // de nt --> a 1 resultado gradualmente
+        int workers = nt/2;
+        while(workers > 0){
+            if(tid < workers){
+                results[tid] += results[tid + workers];
+            }
+            workers = workers/2;
+            #pragma omp barrier
+        }
+        // resultado queda en results[0]
+    }
+    return results[0];
 }
 
 int main(int argc, char** argv){
