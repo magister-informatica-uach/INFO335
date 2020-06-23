@@ -15,9 +15,12 @@ double parallel_reduction(double *x, long n, int nt){
         int start = segment*tid;
         int end = start + segment;
         // sumando segmentos en paralelo
-        for(int i=start; i<n && i<end; ++i){
-            results[tid] += x[i];
+		double lsum = 0.0f;
+        for(int i=start; i<end && i<n; ++i){
+            //results[tid] += x[i];
+            lsum += x[i];
         }
+		results[tid] = lsum;
         #pragma omp barrier
         // terminamos con sumas parciales en "results", nos olvidamos de x
         // FASE 2 ---> el proceso O(log n) --> terminamos 1 valor

@@ -1,0 +1,11 @@
+# lab - pointer jumping
+
+En este lab debera programar pointer jumping:
+1) Implementarlo de forma secuencial.
+2) Implementarlo de forma paralela en OpenMP.
+3) Implementarlo de forma paralela en CUDA.
+
+Hacer Graficos de:
+- Tiempo  (secuencial vs OpenMP vs CUDA)
+- Speedup (OpenMP y CUDA vs secuencial)
+- Eficiencia (Solo para OpenMP)
