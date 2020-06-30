@@ -1,0 +1,11 @@
+LAB: Experimentando con esqueletos algorithmicos
+
+
+1) Investigue la herramienta STAPL o FastFlow, dependiendo de cual le toco:
+
+2) Instale la libreria y asegurese de que este funcionando correctamente.
+
+3) Haga un ejemplos para los patrones:
+    a) map
+    b) reduce
+    c) scatter and gather
