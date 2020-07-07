@@ -1,28 +1,34 @@
 En este lab vamos a experimentar como varia el rendimiento secuencial y paralelo
-entre soluciones deterministicas y aleatorias para un mismo problema. Puede 
+entre soluciones deterministicas y aleatorias para un mismo problema. Puede
 trabajar en pareja.
 
-1) Un padre necesita encontrar a su hijo perdido en
-una matriz de n x n. El padre tiene dos opciones:
+1) La mama lobo necesita encontrar a su cachorro perdido en
+un espacio de n x n celdas. La madre tiene dos opciones:
 
 
-a) OPCION 1: llamar a sus amigos del club de Tennis y dividir el espacio de
-busqueda. Estos amigos prefieren buscar exaustivamente celda por celda.
+a) llamar a la manada, que es de k lobos, dividir el espacio de busqueda y
+buscar exaustivamente celda por celda con alguna heuristica deterministica.
 
-b) OPCION 2: llamar a sus amigos del bar, que estan algo 'tocados'. Ellos proponen
-buscar haciendo 'random walks' simultaneos.
-
+b) llamar a la manada de k lobos, haciendo 'random walks' simultaneos.
 
 
+2) Haga el algoritmo secuencial correspondiente para cada modo de busqueda. El
+programa se ejecutara asi:
+    ./prog n k m
+    n: el tamano del dominio n x n
+    k: la cantidad de lobos
+    m: modo, 0: deterministico, 1: random walk
 
-Analize y programe, usando C++ y OpenMP, ambas soluciones en un solo programa 
-que se ejecuta de la forma:
-./prog n grupo modo
-Puede apoyarse del profesor e internet.
+3) paralelizar cada modo de busqueda. Al menos una paralelizacion debe ser en GPU.
+ y otra en CPU.
 
-Comente los resultados de rendimiento que obtiene al variar el grupo de busqueda
-y el tamano de la matriz. Cada vez que se ejecuta el programa, la ubicacion del
-nino ponerla al azar, y el grupo de busqueda siempre comienza de la cordenada
-(n/2, n/2).
+4) Comente los resultados de rendimiento ahora incluyendo rendimientos promedio, minimo y
+maximo de la cantidad de muestras que toma.
+    - Para el modo a) inicializar los lobos uno en cada region de la particion.
+    - Para el modo b) inicializar los lobos todos juntos desde un mismo lugar que cambia cada vez.
+    - Grafico 1: [Tiempo, speedup, eficiencia]
+    - Grafico 2: [Tiempo, speedup, eficiencia]
+    - Grafico 3: Revisar como cambia el speedup en funcion de k = 5%, 10%, ... 100% de 'n = 4096'.
+    - Grafico 4: Revisar como cambia el speedup en funcion de n [128, 256, ..., 8192] (max paralelismo).
 
-
+5) Hacer un breve reporte por email.
