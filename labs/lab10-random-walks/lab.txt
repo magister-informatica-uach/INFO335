@@ -1,6 +1,6 @@
 En este lab vamos a experimentar como varia el rendimiento secuencial y paralelo
 entre soluciones deterministicas y aleatorias para un mismo problema. Puede
-trabajar en pareja.
+trabajar en grupo.
 
 1) La mama lobo necesita encontrar a su cachorro perdido en
 un espacio de n x n celdas. La madre tiene dos opciones:
@@ -19,16 +19,17 @@ programa se ejecutara asi:
     k: la cantidad de lobos
     m: modo, 0: deterministico, 1: random walk
 
-3) paralelizar cada modo de busqueda. Al menos una paralelizacion debe ser en GPU.
- y otra en CPU.
+3) paralelizar cada modo de busqueda. Al menos una paralelizacion debe ser en GPU y otra en CPU.
 
 4) Comente los resultados de rendimiento ahora incluyendo rendimientos promedio, minimo y
 maximo de la cantidad de muestras que toma.
+    - En cada instante de tiempo, (de t a t+1), cada lobo es libre de moverse como maximo
+      una celda en (+-1, +-1), puede darse (1, 1) y seria diagonal.
     - Para el modo a) inicializar los lobos uno en cada region de la particion.
     - Para el modo b) inicializar los lobos todos juntos desde un mismo lugar que cambia cada vez.
-    - Grafico 1: [Tiempo, speedup, eficiencia]
-    - Grafico 2: [Tiempo, speedup, eficiencia]
-    - Grafico 3: Revisar como cambia el speedup en funcion de k = 5%, 10%, ... 100% de 'n = 4096'.
-    - Grafico 4: Revisar como cambia el speedup en funcion de n [128, 256, ..., 8192] (max paralelismo).
+    - Grafico 1: [Tiempo, speedup, eficiencia] (eye Y)
+    - Grafico 2: [Tiempo, speedup, eficiencia] (eye Y)
+    - Grafico 3: Revisar como cambia el speedup en funcion de [k = 5%, 10%, ... 100%] (eje X) de 'n^2, con n = 4096'.
+    - Grafico 4: Revisar como cambia el speedup en funcion de n [128, 256, ..., 8192] (eje X) (max paralelismo).
 
 5) Hacer un breve reporte por email.
