@@ -2,44 +2,77 @@
 #include <stdlib.h>
 #include <omp.h>
 #include <time.h>
-void printarray(float *a,int n, const char* msg){
-	printf("%s\n",msg);
-	for (int i = 0; i <n; ++i)
-	{
-		printf("%f\n",a[i]);
-	}
-	printf("\n");
-}
 
+#define REPEATS 1.0
 
-void prefix(float *x,float *s,int n){
-}
+#include "tools.h"
+#include "algs.h"
 
+const char* algs[2] = {"Recursive", "Iterative"};
 
-int main(int argc, char const *argv[]){
+int main(int argc, char **argv){
 	double t1,t2;
-	srand(time(NULL));
-	if(argc != 3){
-		fprintf(stderr, "run as ./prog n nt\n");
+	if(argc != 4){
+		fprintf(stderr, "argc = %i\n", argc); fflush(stderr);
+        fprintf(stderr, "run as ./prog n alg nt\n"); fflush(stderr);
 		exit(EXIT_FAILURE);
 	}
 	int n=atoi(argv[1]);
-	int ntt=atoi(argv[2]);
-	float *s=(float *)malloc(sizeof(float)*n);
-	float *x=(float *)malloc(sizeof(float)*n);
-	for (int i = 0; i < n; ++i)
-	{
-		x[i]=1.0*(i+1);
-	}
-	omp_set_num_threads(ntt);
+    int alg=atoi(argv[2]);
+	int nt=atoi(argv[3]);
+	int *s= new int[n];
+	int *sgold= new int[n];
+	int *x= new int[n];
+	omp_set_num_threads(nt);
+    printf("Using %i OpenMP threads\n", nt);
+
+
+
+
+    // (1) INIT DATA
+    printf("Init data.............................."); fflush(stdout);
 	t1=omp_get_wtime();
-	prefix(x,s,n);
+    initarray(x, n, 1.0f);
 	t2=omp_get_wtime();
-	if (n<=128) {
-		printarray(s,n,"s: ");
-	}
-	printf("prefix sum time: %f [s]\n",t2-t1 );
-	
-	
+    printf("done: %f secs\n", t2-t1);
+	printarray(x,n,"x: ");
+
+
+
+
+    // (2) PARALLEL PREFIX SUMS
+    printf("\nParallel Prefix Sums [%s].......", algs[alg]); fflush(stdout);
+	t1=omp_get_wtime();
+    if(alg==0){
+	    psums_rec(x,s,n);
+    }
+    else{
+	    psums_it(x,s,n);
+    }
+	t2=omp_get_wtime();
+    printf("done: %f secs\n",(t2-t1));
+	printarray(s,n,"s: ");
+
+
+
+
+
+    // (3) [GOLD] SEQUENTIAL PREFIX SUMS
+    printf("\nSequential Prefix Sums................."); fflush(stdout);
+	t1=omp_get_wtime();
+    psums_seq(x, sgold, n);
+	t2=omp_get_wtime();
+    printf("done: ");
+	printf("%f secs\n",(t2-t1));
+	printarray(sgold,n,"s: ");
+    printf("\nValidating............................."); fflush(stdout);
+
+
+
+
+
+    // (4) VALIDATE PARALLEL RESULT WITH GOLD
+    validate(s, sgold, n);
+    printf("pass\n");
 	return 0;
 }

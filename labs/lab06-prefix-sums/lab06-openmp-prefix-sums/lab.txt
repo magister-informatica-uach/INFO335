@@ -1,16 +1,19 @@
-LAB: Prefix Sums
+1) Implemente prefix-sums recursivo e iterativo, asumiendo n = 2^k.
 
-1) Pruebe el ejemplo de prefix sum entregado. Los valores de input son n=2^k, k un numero arbitrario, y nt = numero de threads que lo usara despues.
-
-2) Entender como funciona la recursividad de este algoritmo.
-
-3) Identifique donde puede realizar computacion paralela e inserte directivas OpenMP para que la funcion de prefix sum ocurra en paralelo.
-
-4) Vea como se comporta el Speedup y Efficiency en su computador o servidor.
-
-5) Trate de implementar la version no-recursiva del prefix sum y comparela con la recursiva usando las metricas de rendimiento vistas.
--- apoyarse del libro de Jaja, capitulo de prefx sum.
+La ejecucion del programa es: ./prog n alg nt
+n = tamano de la lista
+alg = 0 -> recursivo,  1 -> iterativo
+nt = numero de threads ( lo usara en ejercicio 2) )
 
 
+2) Identifique donde puede acelerar el calculo de prefix sums usando computacion paralela.
+Disene una estrategia de ejecucion paralela.
 
 
+3) Implementar diseno de paralelizacion. Puede elegir CPU (OpenMP) o bien GPU (CUDA).
+
+
+4) Vea como se comporta el Speedup y Efficiency en su computador o servidor del curso.
+
+
+5) Compare el rendimiento de las tres versiones de prefix sum (secuencial y 2 paralelas) y saque sus conclusiones.
