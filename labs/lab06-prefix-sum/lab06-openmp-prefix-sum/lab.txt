@@ -1,4 +1,4 @@
-1) Implemente prefix-sums recursivo e iterativo, asumiendo n = 2^k.
+1) Implemente prefix-sums paralelo, recursivo e iterativo, asumiendo n = 2^k.
 
 La ejecucion del programa es: ./prog n alg nt
 n = tamano de la lista

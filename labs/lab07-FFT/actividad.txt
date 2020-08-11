@@ -1,6 +1,5 @@
 En este lab usted trabajara con la transformada rapida de Fourier (FFT) en sus distintas versiones.
 
-1) Paralelizar el algoritmo recursivo usando openMP.
-2) Paralelizar el algoritmo iterativo usando CUDA.
-3) Mostrar un grafico que compare el rendimiento de ambas soluciones y una reflexion sobre la diferencia de rendimiento
-entre las version recursiva e iterativa.
+1) Escoja uno de los algoritmos, el recursivo o el iterativo, para el resto de las preguntas.
+2) Paralelizar el algoritmo escogido usando OpenMP y CUDA.
+3) Mostrar un grafico que compare el rendimiento de ambas soluciones y una reflexion sobre la diferencia de rendimiento entre las version recursiva e iterativa.
