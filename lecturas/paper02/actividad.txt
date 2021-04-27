@@ -8,9 +8,9 @@ a) Se propone un nuevo algoritmo mas eficiente para X proposito.
 b) Se propone un algoritmo paralelo (CPU, GPU, otro).
 c) Se realiza un analisis mas teorico de rendimiento o eficiencia de un algoritmo.
 d) Se comparan soluciones existentes del estado del arte.
-e) Se hace un analisis de eficiencia energetico
+e) Se hace un analisis de eficiencia energetica
 
-Luego tener escogido el paper, presentar en 15~20 minutos su experiencia, incluyendo:
+Luego de tener escogido el paper, presentar en 15~20 minutos su experiencia, incluyendo:
 (1) Titulo del paper
 (2) Resumen breve (problema que ataca, solucion que propone, o bien revision que realiza)
 (3) Mostrar numero de citas del paper, anio publicacion.

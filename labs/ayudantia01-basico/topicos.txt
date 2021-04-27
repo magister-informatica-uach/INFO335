@@ -21,7 +21,7 @@
     # Estandar C/C++
         *) Para trabajar en Guanaco: esta todo instalado, solo programar.
         *) para C/C++ y OpenMP:
-            Compilador GCC (incluye los comandos gcc y g++) (desde repositorio de su distribucion Linux)
+            Compilador GCC/G++ (incluye los comandos gcc y g++) (desde repositorio de su distribucion Linux)
         *) para CUDA:
             - GPU Nvidia (ojala del 2015+)
             - CUDA Toolkit instalado (eso trae todo incluso el driver)
@@ -42,7 +42,7 @@
                             ii) cuantos datos continuos trabaja
                     }
 
-        ii) CUDA (C/C++)
+        ii) CUDA (APRENDER A PROGRAMAR EN GPU) (C/C++)
         iii) MPI (mas C, hartos parametros del estilo PARAMETRO_MPI)
 
 
