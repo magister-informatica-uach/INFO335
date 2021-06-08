@@ -6,11 +6,18 @@
 // BUENO EN CPU
 // x1 x2 x3 x4 x5 x6 x7 x8 x9
 // t1 t1 t1 t2 t2 t2 t3 t3 t3
+// RAZON DE FONDO: **coherencia de cache** con segmentos grandes --> BIEN
+//                                  "      segmmentos pequenos (cs=1) --> FALSE SHARING
 //
-// MALO EN CPU
-// x1 x2 x3 x4 x5 x6 x7 x8 x9
-// t1 t2 t3 t1 t2 t3 t1 t2 t3
-//
+// MALO EN CPU --> FALSE SHARING
+// | x1 x2 x3 | x4 x5 x6 | x7 x8 x9 |
+//   t1 t2 t3   t1 t2 t3   t1 t2 t3
+// 
+// BLOQUE DE PALABRAS=3 (ejemplo)
+// t1 lee x1,x2,x3 y lo pone en cache de su nucleo CPU (L1, cache por nucleo)
+// t2 lee x1,x2,x3 (lee un bloque de palabras).
+// t3 lee x1,x2,x3 (lee un bloque de palabras).
+// compartiendo elementos en sus lineas de cache
 //
 // saxpy es un ejemplo HPC sencillo ==> Hola Mundo de HPC
 // SAXPY => S = aX + Y   S, X, Y vectores de n dimensiones
@@ -38,7 +45,7 @@ void init_vec(int *a, int n, int c){
 void saxpy1(int *s, int *x, int *y, int n, int a, int cs){
     // directiva que paraleliza el for que viene a continuacion
     // al definir chunksize, este se calcula como chunksize = n / nt
-    #pragma omp parallel for
+    #pragma omp parallel for   
     for(int i=0; i<n; ++i){
         s[i] = a*x[i] + y[i];
     }

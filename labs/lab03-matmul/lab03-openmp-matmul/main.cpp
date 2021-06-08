@@ -77,6 +77,8 @@ void matmul(int *a, int *b, int *c, int n){
 
 // implementar
 void block_matmul(int *a, int *b, int *c, int n, int bsize){
+    // asumen matrices de n x n
+    // bloques de bsize x bsize
 }
 
 

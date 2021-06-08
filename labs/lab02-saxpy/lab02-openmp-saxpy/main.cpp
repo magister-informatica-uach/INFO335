@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <cstdio>
+// OpenMP (open multi-processing)
 #include <omp.h>
-
 #include "saxpy.h"
 
 int main(int argc, char **argv){
