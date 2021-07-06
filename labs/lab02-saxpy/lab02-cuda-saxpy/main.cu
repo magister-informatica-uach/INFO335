@@ -3,17 +3,19 @@
 #include <cuda.h>
 #include <omp.h>
 
-// MORALEJA
+// PATRON SAXPY
+// S[i] = a*X[i] + Y[i] 
 
+// MORALEJA
 // MALO EN GPU
 // x1 x2 x3 x4 x5 x6 x7 x8 x9
 // t1 t1 t1 t2 t2 t2 t3 t3 t3
-//
-
 
 // BUENO EN GPU
 // x1 x2 x3 x4 x5 x6 x7 x8 x9
 // t1 t2 t3 t1 t2 t3 t1 t2 t3
+
+
 
 // (1) haga un programa saxpy en CUDA:
 //      a) funcion saxpy con mapeo de threads intercalado usando n threads (1 thread por dato).
@@ -22,14 +24,16 @@
 // (4) Compare el rendimiento vs Saxpy OpenMP, cual es mas rapida? por cuanto?
 // (5) Haga un grafico con un 'n' grande, de tiempo vs blocksize. Cual fue el mejor blocksize?
 
+// Compute Unified Device Architecture (Nvidia ~2007)  (tambien existe OpenCL (no confundir con OpenGL))
+// CUDA   [privada]             --> GPUs NVIDIA (las innovaciones ocurren primero en CUDA)
+// OpenCL [estandar abierto]    --> GPUs NVIDIA, AMD, INTEL, CPUs
 
-// CUDA:  sintaxis c++ con adicion de palabras claves para GPU
-// CUDA = C++ + extensiones
+// CUDA: compilador 'nvcc' (analogo a gcc/g++) para sintaxis tipo c/c++ con adicion de palabras claves para GPU
+// CUDA = C++ + extensiones para GPU
 
 // CUDA tiene 2 ambientes que interactuan, Host y Device
 // Host: CPU (host) + RAM (en general todo lo que no es la GPU)
-// Device: GPU (tiene su propio espacio de memoria, lo que esta en RAM, no esta
-// automaticamente en GPU)
+// Device: GPU (tiene su propio espacio de memoria, lo que esta en RAM de CPU, no esta automaticamente en GPU)
 
 // WORKFLOW:
 // Host trabajo previo
@@ -39,7 +43,6 @@
 // Host continue...
 
 // Kernel
-
 __global__ void mikernel(float a, float *x, float *y, float *s, int n){
     // SAXPY en GPU 
     // instrucciones GPU
@@ -47,8 +50,8 @@ __global__ void mikernel(float a, float *x, float *y, float *s, int n){
     // a) calcular id global del thread
     int tid = (blockIdx.x * blockDim.x) + threadIdx.x;
     // b) procesar "el" trabajo por thread
-    if(tid < n){
-        s[tid] = a*x[tid] + y[tid];
+    if(tid < n){ // OTRA MANERA DE SOLUCIONAR EL OUT OF BOUNDS, SE LLAMA "PADDING"
+        s[tid] = a*x[tid] + y[tid]; // fused multiply-add (FMA)
     }
 }
 
@@ -77,7 +80,9 @@ int main(int argc,char **argv){
 		exit(EXIT_FAILURE);
 	}
     int n, m, bs;
+    // punteros version HOST
     float a = 1.0f, *x,  *y,  *s;
+    // punteros de mem version DEVICE
     float   *dx, *dy, *ds;
     // obtener argumentos
     n = atoi(argv[1]);
@@ -101,7 +106,7 @@ int main(int argc,char **argv){
     cudaMalloc(&ds, sizeof(float) * n);
 
     // copiar de Host -> Device
-    //cudaMemcpy( destino, origen, bytes, direccion )
+    //cudaMemcpy(destino, origen, bytes, direccion)
     cudaMemcpy(dx, x, sizeof(float)*n, cudaMemcpyHostToDevice);
     cudaMemcpy(dy, y, sizeof(float)*n, cudaMemcpyHostToDevice);
     //cudaMemcpy(ds, s, sizeof(float)*n, cudaMemcpyHostToDevice)
@@ -142,6 +147,7 @@ int main(int argc,char **argv){
 
 
 void cpu(float a, float *x, float *y, float *s, int n){
+    #pragma omp parallel for num_threads(12)
 	for(int i=0;i<n;i++){
 		s[i]=a*x[i]+y[i];
 	}
