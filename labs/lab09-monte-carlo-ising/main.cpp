@@ -97,12 +97,16 @@ int main(int argc, char** argv) {
     // set rng streams
     std::random_device rd;  //Will be used to obtain a seed for the random number engine
     std::mt19937 prng(rd()); //Standard mersenne_twister_engine seeded with rd()
+
+
     // (1) initialize lattice
     lattice = new int[(Lx)*(Ly)];
     initialize_lattice(lattice, Lx, Ly, prng);
     printf("Initial configuration\n");
-    print_lattice(lattice, Lx, Ly);
-    getchar();
+    if(Lx <= 256){
+        print_lattice(lattice, Lx, Ly);
+        getchar();
+    }
 
 
 
@@ -114,15 +118,17 @@ int main(int argc, char** argv) {
 
 
 
-    // (3) equilibriate
+    // (3) equilibriate [Paralelizar update_lattice_dir]
     int steps_equilibriate = steps;
     for (int t = 0; t < steps_equilibriate; t++) {
       printf("t=%i:\n", t);
       update_lattice_dir(0, prng, lattice, Lx, Ly, exptable);
       update_lattice_dir(1, prng, lattice, Lx, Ly, exptable);  
-      print_lattice(lattice, Lx, Ly);
-      printf("\n\n\n\n");
-      getchar();
+      if(Lx <= 256){
+          print_lattice(lattice, Lx, Ly);
+          printf("\n\n\n\n");
+          getchar();
+      }
     }
     const int steps_sample = steps;
     real mean, error;
