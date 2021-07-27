@@ -1,0 +1,7 @@
+1) Revisar el programa y entender el algoritmo de Metropolis Hastings
+
+2) Idear un plan para poder paralelizar la simulacion. HINT, piense en como lograr aleatoriedad des-centralizada para cada thread.
+
+3) Incorpore las directivas OpenMP donde corresponda para paralelizar la simulacion.
+
+4) Estimar la aceleracion obtenida.

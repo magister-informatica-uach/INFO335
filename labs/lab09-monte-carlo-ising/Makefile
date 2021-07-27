@@ -1,2 +1,2 @@
 all:
-	g++ main.c -fopenmp -o prog
+	g++ main.cpp -fopenmp -o prog

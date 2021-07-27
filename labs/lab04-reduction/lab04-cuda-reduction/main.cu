@@ -11,10 +11,12 @@ __global__ void kernel_initarray(float *a, long n){
 }
 
 __global__ void kernel_reduction(float *a, long n){
+    // AQUI PROGRAMAR SOLUCION GPU DE REDUCCION
 }
 
 float cpu_reduction(float *a, long n){
     float sum = 0.0f;
+    // averiguen como transformar rapidamente esto en paralelo con OpenMP
     for(long i=0; i<n; ++i){
         sum += a[i];
     }
@@ -71,6 +73,5 @@ int main(int argc, char **argv){
     cudaEventSynchronize(stop);
     cudaEventElapsedTime(&cputime, start, stop);
     printf("done\n"); fflush(stdout);
-    printf("GPU result: %f  (%f secs)\nCPU result: %f  (%f secs)\n", gpures, 
-		    gputime*0.001f, cpures, cputime*0.001f);
+    printf("GPU result: %f  (%f secs)\nCPU result: %f  (%f secs)\n", gpures, gputime*0.001f, cpures, cputime*0.001f);
 }

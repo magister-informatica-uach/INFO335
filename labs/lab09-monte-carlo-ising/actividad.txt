@@ -1,5 +1,0 @@
-1) Revisar el programa y entender el algoritmo Monte Carlo
-2) Implementar la funcion print_lattice (que ya esta en el codigo, pero vacia) y
-ocuparla cada vez que hace una iteracion.
-3) Incorporar directivas openmp para acelerar el calculo.
-4) Estimar la aceleracion.
