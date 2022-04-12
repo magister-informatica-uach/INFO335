@@ -7,18 +7,21 @@ Actividad:
 1) Configurar acceso a supercomputador Patagon
     - ver tips en anuncios del canal discord
 
-2) Encontrar caracteristicas hardware del nodo de computo, averigue:
+2) Encontrar caracteristicas hardware del nodo de computo, explique el
+comando o tool que permite encontrarlo estando conectado. Averigue:
     - RAM, tipo (DDR cuanto) y velocidad.
     - Cantidad de Almacenamiento y tipo (HDD?, SDD?)
     - Cantidad de nucleos CPUs.
     - Cantidad de CPUs
     - Tiene o no hyper-threading (buscar si no conoce el termino)
     - Cantidad de GPUs
+        - Modelo de GPU
+        - Memoria por GPU
+        - Nucleos por GPU
 
 3) En base al nodo DGX del Patagon, calcule
     a) Maximo TFLOPS
         - Solo con CPU
         - Solo con GPU
         - Combinado
-    b) Ancho de banda a la memoria: MB/sec
-
+    b) Ancho de banda a la memoria RAM: GB/sec
