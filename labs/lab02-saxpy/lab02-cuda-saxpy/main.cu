@@ -3,20 +3,6 @@
 #include <cuda.h>
 #include <omp.h>
 
-// PATRON SAXPY
-// S[i] = a*X[i] + Y[i] 
-
-// MORALEJA
-// MALO EN GPU
-// x1 x2 x3 x4 x5 x6 x7 x8 x9
-// t1 t1 t1 t2 t2 t2 t3 t3 t3
-
-// BUENO EN GPU
-// x1 x2 x3 x4 x5 x6 x7 x8 x9
-// t1 t2 t3 t1 t2 t3 t1 t2 t3
-
-
-
 // (1) haga un programa saxpy en CUDA:
 //      a) funcion saxpy con mapeo de threads intercalado usando n threads (1 thread por dato).
 // (2) Grafique tiempo vs n.
@@ -24,55 +10,14 @@
 // (4) Compare el rendimiento vs Saxpy OpenMP, cual es mas rapida? por cuanto?
 // (5) Haga un grafico con un 'n' grande, de tiempo vs blocksize. Cual fue el mejor blocksize?
 
-// Compute Unified Device Architecture (Nvidia ~2007)  (tambien existe OpenCL (no confundir con OpenGL))
-// CUDA   [privada]             --> GPUs NVIDIA (las innovaciones ocurren primero en CUDA)
-// OpenCL [estandar abierto]    --> GPUs NVIDIA, AMD, INTEL, CPUs
-
-// CUDA: compilador 'nvcc' (analogo a gcc/g++) para sintaxis tipo c/c++ con adicion de palabras claves para GPU
-// CUDA = C++ + extensiones para GPU
-
-// CUDA tiene 2 ambientes que interactuan, Host y Device
-// Host: CPU (host) + RAM (en general todo lo que no es la GPU)
-// Device: GPU (tiene su propio espacio de memoria, lo que esta en RAM de CPU, no esta automaticamente en GPU)
-
-// WORKFLOW:
-// Host trabajo previo
-// Host -> Device
-//         Device trabaja (ejecucion de codigo GPU -> Kernel)
-// Host <- Device
-// Host continue...
-
 // Kernel
 __global__ void mikernel(float a, float *x, float *y, float *s, int n){
-    // SAXPY en GPU 
-    // instrucciones GPU
-    // STRATEGIA: 
-    // a) calcular id global del thread
-    int tid = (blockIdx.x * blockDim.x) + threadIdx.x;
-    // b) procesar "el" trabajo por thread
-    if(tid < n){ // OTRA MANERA DE SOLUCIONAR EL OUT OF BOUNDS, SE LLAMA "PADDING"
-        s[tid] = a*x[tid] + y[tid]; // fused multiply-add (FMA)
-    }
+    // TRABAJAR AQUI
 }
 
-void imprime(float *a, int n);
 void cpu(float a, float *x, float *y, float *z, int n);
-
-void init_vec(float *a, int n, float c){
-	#pragma omp parallel for num_threads(12)
-	for(int i=0; i<n; ++i){
-		a[i] = c*i;
-	}
-}
-
-void print_vec(float *a, int n, const char *msg){
-    if(n > 32){ return; }
-    printf("%s\n[", msg);
-    for(int i=0; i<n; ++i){
-        printf("%f ", a[i]);
-    }
-    printf("]\n");
-}
+void init_vec(float *a, int n, float c);
+void print_vec(float *a, int n, const char *msg);
 
 int main(int argc,char **argv){
 	if(argc != 4){
@@ -152,3 +97,19 @@ void cpu(float a, float *x, float *y, float *s, int n){
 		s[i]=a*x[i]+y[i];
 	}
 }
+void init_vec(float *a, int n, float c){
+	#pragma omp parallel for num_threads(12)
+	for(int i=0; i<n; ++i){
+		a[i] = c*i;
+	}
+}
+
+void print_vec(float *a, int n, const char *msg){
+    if(n > 32){ return; }
+    printf("%s\n[", msg);
+    for(int i=0; i<n; ++i){
+        printf("%f ", a[i]);
+    }
+    printf("]\n");
+}
+
