@@ -1,2 +1,2 @@
 all:
-	nvcc main.cu -O3 -o prog
+	nvcc -O3 -Xcompiler -fopenmp main.cu -o prog

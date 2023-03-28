@@ -1,0 +1,18 @@
+Reporte Tecnico INFO335 Computacion de Alto Rendimiento (Magister y optativo INFO242)
+
+1) Seleccionar un problema computacional en donde su solucion pueda ser paralelizable
+
+2) Idear una solucion eficiente que logre escalar su rendimiento al usar mas recursos paralelos.
+
+3) Programar la solucion usando algunas de las herramientas vistas en clases.
+
+4) Escribir un reporte tecnico de 4 paginas estilo paper de investigacion.
+    - Titulo
+    - Abstract
+    - Introduccion
+    - Trabajo relacionado
+    - Descripcion de la nueva solucion o metodologia.
+    - Resultados (graficos y descripcion)
+    - Discusion y conclusiones
+
+5) Entregar reporte tecnico como maximo el 20 de Julio 2022. Debido a los tiempos acotados, no habra defensa en vivo.

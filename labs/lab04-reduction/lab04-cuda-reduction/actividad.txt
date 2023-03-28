@@ -1,5 +1,7 @@
 LAB - REDUCCION:
 
+
+
 I) Implementacion
 - Implemente reduccion en cuda, manual, haciendo las pasadas (o iteraciones) necesarias
 

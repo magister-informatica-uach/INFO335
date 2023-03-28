@@ -1,0 +1,8 @@
+Counting sort
+
+1) Dado un arreglo A[] con 'n' numeros en el rango [0..k-1]
+2) crear un arreglo C[] de tamano k-1
+3) Barrer A[] e ir contando en C[]
+4) Hacer prefix sum en C[]
+5) Rotar C[] a la derecha una vez
+6)

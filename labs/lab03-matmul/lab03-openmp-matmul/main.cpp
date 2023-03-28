@@ -126,5 +126,3 @@ void printmat(int *a, int n, const char *name){
     }
     printf("\n");
 }
-
-

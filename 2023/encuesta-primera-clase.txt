@@ -1,0 +1,20 @@
+- Frecuencia de programacion              BIEN (Python, Javascript, Java, C/C++)
+- Frescos en C/C++                        1/11
+- Instalar Linux                          100%
+- Confianza en Linux                      Suficiente la mayoria
+- Monitorear recursos HW                  OK
+- OpenMP                                  Mas o menos
+- CUDA                                    Mas o menos
+
+- CPU Multi-core                          Ideal General OK
+- GPU concepto paralelismo masivo         OK
+- Diferencias CPU/GPU                     A nivel de aplicaciones OK
+- Conocer Hardware                        BIEN
+- Manipular Hardware                      Algunos
+- Paralelismo (programador)               OK
+- Jerarquia de Memoria (Registros,L1,L2,L3,RAM,STORAGE)
+
+- Analisis de algoritmos (O(n), O(log n)) OK con algoritmos simples
+- Modelo RAM (Random Access Machine)      No hay recuerdos
+
+
