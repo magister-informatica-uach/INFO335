@@ -17,7 +17,13 @@ const TYPE pi = acos(-1);
 
 int main(int argc, char** argv){
     if(argc != 4){
-        fprintf(stderr, "Ejecutar como ./prog <n> <nt> <mode>\n-nt: num CPU threads\n-mode=0: DFT basico\n-mode=1: FFT Radix-2-rec \n-mode=2 FFT Radix-2-it\n");
+        fprintf(stderr, "Ejecutar como ./prog <n> <nt> <mode>\n"
+                "-n    : largo input como potencia de 2\n"
+                "-nt   : num CPU threads\n"
+                "-mode :\n"
+                "\t0: DFT basico\n"
+                "\t1: FFT Radix-2 recursivo\n"
+                "\t2: FFT Radix-2-iterativo\n");
         return EXIT_FAILURE;
     }
     int N = atoi(argv[1]);
