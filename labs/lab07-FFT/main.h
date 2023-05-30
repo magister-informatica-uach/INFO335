@@ -7,7 +7,7 @@ using namespace std;
 typedef complex<double> cd;
 const TYPE PI = acos(-1);
 
-void naive_dft(TYPE* x, TYPE* X_real, TYPE* X_imag, int N);
+void dft(TYPE* x, TYPE* X_real, TYPE* X_imag, int N);
 void fft_recursive(TYPE* x, TYPE* X_real, TYPE* X_imag, int N);
 void fft_iterative(TYPE* a, TYPE *A, TYPE *X_real, TYPE *X_imag, int n);
 
@@ -29,7 +29,7 @@ void printArray(TYPE* a, int N, const char *msg){
 }
 
 // original DFT
-void naive_dft(TYPE* x, TYPE* X_real, TYPE* X_imag, int N) {
+void dft(TYPE* x, TYPE* X_real, TYPE* X_imag, int N) {
     for(int k=0; k<N; k++) {
         X_real[k] = 0.0;
         X_imag[k] = 0.0;
@@ -47,7 +47,7 @@ void fft_recursive(TYPE* x, TYPE* X_real, TYPE* X_imag, int N) {
 		//N = 1
 		//X_real[0] = x[0];
 		//X_imag[0] = 0.0;
-		naive_dft(x, X_real, X_imag, N);
+		dft(x, X_real, X_imag, N);
 	}
 	else {
         TYPE *x_even = (TYPE*)malloc(sizeof(TYPE)*N/2);

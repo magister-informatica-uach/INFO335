@@ -16,14 +16,15 @@ const TYPE pi = acos(-1);
 #include "main.h"
 
 int main(int argc, char** argv){
-    if(argc != 3){
-        fprintf(stderr, "Ejecutar como ./prog n mode\n-mode=0: DFT basico\n-mode=1: FFT Radix-2-rec \n-mode=2 FFT Radix-2-it\nnt=num_threads");
+    if(argc != 4){
+        fprintf(stderr, "Ejecutar como ./prog <n> <nt> <mode>\n-nt: num CPU threads\n-mode=0: DFT basico\n-mode=1: FFT Radix-2-rec \n-mode=2 FFT Radix-2-it\n");
         return EXIT_FAILURE;
     }
     int N = atoi(argv[1]);
-    int mode = atoi(argv[2]);
+    int nt = atoi(argv[2]);
+    int mode = atoi(argv[3]);
     double t1, t2;
-    printf("FFT mode=%i N=%i\n", mode, N); fflush(stdout);
+    printf("FFT N=%i nt=%i mode=%i\n", mode, nt, N); fflush(stdout);
     printf("Gen Random Signal......"); fflush(stdout);
     t1 = omp_get_wtime();
     TYPE* signal = genRandomSignal(N);
@@ -34,7 +35,7 @@ int main(int argc, char** argv){
     
     t1 = omp_get_wtime();
     switch (mode){
-        case 0: printf("DFT Algorithm.........."); fflush(stdout); naive_dft(signal, fft_real, fft_imag, N); break;
+        case 0: printf("DFT Algorithm.........."); fflush(stdout); dft(signal, fft_real, fft_imag, N); break;
         case 1: printf("FFT Recursive.........."); fflush(stdout); fft_recursive(signal, fft_real, fft_imag, N); break;
         case 2: printf("FFT Iterative.........."); fflush(stdout); fft_iterative(signal, fft_real, fft_imag, N); break;
     }
