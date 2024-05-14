@@ -3,7 +3,9 @@
 En este lab debera programar pointer jumping:
 1) Implementarlo de forma secuencial.
 2) Implementarlo de forma paralela en OpenMP.
+	- Explore que pasa cuando hay mas datos que CPU cores
 3) Implementarlo de forma paralela en CUDA.
+	- Explique como se agura un paralelismo masivo y correcto
 
 Hacer Graficos de:
 - Tiempo  (secuencial vs OpenMP vs CUDA)

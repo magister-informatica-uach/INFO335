@@ -17,4 +17,4 @@ problema aumenta gradualmente.
 
 
 IV) Exploratorio
-- Apoyandose de literatura, proponga una reduccion mas avanzada para GPU.
+- Apoyandose de literatura, busque una manera de acelerar mas la reduccion en CUDA.

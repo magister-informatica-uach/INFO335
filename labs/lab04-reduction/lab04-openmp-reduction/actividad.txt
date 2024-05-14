@@ -10,6 +10,6 @@ II) Rendimiento
 (3) Mida la eficiencia (efficiencia vs threads) con N en N=10^3 y otra en N=10^8.
 
 III) Discusion
-(1) Investigue sobre la reduccion automatica y haga un ejemplo auto.c que la
+(1) Investigue sobre la reduccion automatica y haga un ejemplo auto.cpp que la
 utilice. Compare resultados vs la implementacion manual.
 (2) Que cambios habria que hacer para que la inicializacion con numeros aleatorios tambien sea en paralelo?

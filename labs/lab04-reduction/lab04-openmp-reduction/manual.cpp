@@ -30,36 +30,9 @@ int main(int argc, char** argv){
     // calcular la suma (reduccion) en paralelo
     printf("Calculando Reduccion......"); fflush(stdout);
     t1 = omp_get_wtime();
-    #pragma omp parallel for reduction(+:sum)
     for(int i = 0; i < N; ++i){
         sum += x[i];
     }
-    //#pragma omp parallel
-    //{
-    //   // FASE 1, reduccion bloques secuenciales
-    //   int tid = omp_get_thread_num();
-    //   int chunk = (N + nt -1)/nt;
-    //   int start = tid*chunk;
-    //   int end = start + chunk; // (tid+1)*chunk
-    //   double rlocal = 0.0;
-    //   for(int i=start; i<N && i<end; ++i){
-    //        rlocal += x[i];
-    //   }
-    //   // tenemos un bloque reducido (rlocal)
-    //   // ubicarlo en el arreglo de resultados
-    //   r[tid] = rlocal;
-    //   #pragma omp barrier
-    //   // FASE 2 (ASUMAMOS QUE nt es potencia de 2)
-    //   int workers = nt/2;
-    //   while(workers > 0){
-    //       if(tid < workers){
-    //            r[tid] += r[tid+workers];
-    //       } 
-    //       #pragma omp barrier
-    //       workers = workers >> 1;
-    //   }
-    //}
-    //sum = r[0];
     t2 = omp_get_wtime();
     printf("LISTO: %f secs\n", t2-t1); fflush(stdout);
     free(x);
