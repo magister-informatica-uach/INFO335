@@ -30,7 +30,7 @@ int main(int argc, char** argv){
     int nt = atoi(argv[2]);
     int mode = atoi(argv[3]);
     double t1, t2;
-    printf("FFT N=%i nt=%i mode=%i\n", mode, nt, N); fflush(stdout);
+    printf("FFT N=%i nt=%i mode=%i\n", N, nt, mode); fflush(stdout);
     printf("Gen Random Signal......"); fflush(stdout);
     t1 = omp_get_wtime();
     TYPE* signal = genRandomSignal(N);
